@@ -13,7 +13,7 @@
 <body>
     <header>
         <!-- jumbotron -->
-        <div class="px-4 pt-5 my-5 text-center border-bottom">
+        <div class="px-4 pt-5 text-center">
             <h1 class="display-4 fw-bold">Welcome to the Pokemon Card Look-Up!</h1>
             <div class="col-lg-6 mx-auto">
               <p class="lead mb-4">Search for any pokemon, get a list of cards and up-to-date information about the card, including prices!</p>
@@ -58,6 +58,23 @@
               </div>
             </div>
           </nav>
+          <!-- Checkboxes possibly hidden on page load and then shown to narrow down search -->
+        <div class="container">
+        <div class="row">
+          <div class="form-check form-check-inline col-4">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">Holographic</label>
+          </div>
+          <div class="form-check form-check-inline col-4">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">Standard</label>
+          </div>
+          <div class="form-check form-check-inline col-4">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+            <label class="form-check-label" for="inlineCheckbox3">Discontinued</label>
+          </div>
+        </div>
+        </div>
     </header>
     
 </body>
