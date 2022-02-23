@@ -17,6 +17,7 @@ $('#searchBtn').on('click', function(event) {
   console.log('hey');
   $('#jumbotron').addClass('d-none');
   $('#pokemonInfoBox').removeClass('d-none');
+  $('#searchResults').removeClass('d-none');
 
 })
 
