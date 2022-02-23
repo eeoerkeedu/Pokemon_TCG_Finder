@@ -70,7 +70,22 @@
         </div>
       </div>
     </div>
- 
+   <div class="row container-fluid bg-dark text-light mx-auto my-3 p-3 border border-3 border-danger">
+    <div class="col-12 col-md-6" id="pokeInfoBox">
+      <h2 style="text-decoration: underline;">Pokedex Entry</h2>
+      <ul id="pokeInfoList" style="list-style: none;" class="">
+        <li style="font-weight:bold" class="" id="pokeName"></li>
+        <li id="pokeID"></li>
+        <li id="pokeType"></li>
+        <li id="pokeWeight"></li>
+        <li id="pokeHeight"></li>
+      </ul>
+    </div>
+    <div class="col-12 col-md-6 border border-1 border-light">
+      <img id="pokeSprite" src="" alt="Pokemon's sprite image from the videogame">
+    </div>
+  </div>
+
 <!-- Modal -->
     <div class="modal fade" id="nameAlertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel"
       aria-hidden="true">
@@ -95,19 +110,7 @@
     </div>
 
       
-  </main>
-  <div class="row container-fluid bg-dark text-light my-3 p-3">
-    <div class="col-12 col-md-6" id="pokeInfoBox">
-      <ul id="pokeInfoList" class="">
-        <li class="bold" id="pokeName"></li>
-        <li id="pokeID"></li>
-        <li id="pokeType"></li>
-        <li id="pokeWeight"></li>
-        <li id="pokeHeight"></li>
-      </ul>
-    </div>
-    <div class="col-12 col-md-6"><img id="pokeSprite" src="" alt="Pokemon's sprite image from the videogame"></div>
-  </div>
+  </main>  
 
     <!-- Bootstrap JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
