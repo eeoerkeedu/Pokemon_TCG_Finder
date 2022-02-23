@@ -1,14 +1,15 @@
-// modal custom js code
-$("#vendorInfoModal").on("shown.bs.modal", function () {
-  $("#myInput").trigger("focus");
-});
 
+var pokeName = "clefairy";
 
+var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + pokeName + "/";
 
-
-
-
-
+fetch(requestUrl)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+  });
 
 // Hidden jumbotron test code
 $('#searchBtn').on('click', function(event) {
@@ -19,4 +20,7 @@ $('#searchBtn').on('click', function(event) {
   $('#pokemonInfoBox').removeClass('d-none');
 
 })
-
+// modal custom js code
+$("#vendorInfoModal").on("shown.bs.modal", function () {
+  $("#myInput").trigger("focus");
+});
