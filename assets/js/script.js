@@ -122,47 +122,47 @@ function init() {
   handleAutocompleteDisplay();
 }
 
-
 function cardFetch() {
-
-
-var y = 0;
-
+  var y = 0;
   var cardInfoEl = $("#pokemonCardInfoBox");
   var cardUrlQuery = "https://api.pokemontcg.io/v2/cards?q=";
   var searchBox = $("#pokemonInput");
   var searchInput = "name:" + searchBox.val();
   var setDropdown = $("#sets");
   var setSelect = setDropdown.val();
-  var setSelectURL = " set.id:"+setSelect;
-  var formattedURL = cardUrlQuery+searchInput+setSelectURL;
+  var setSelectURL = " set.id:" + setSelect;
+  var formattedURL = cardUrlQuery + searchInput + setSelectURL;
 
-      // Setup X-API-Key and fetch
-      $.ajaxSetup({
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader('X-API-Key', "9e0389d9-7d6b-4a6d-8ea8-ca0ef133a8a7");
-        }
-    })  
-    $.get({
-      url: formattedURL
-    })
-    .then(function (response){
-      console.log(response);
+  // Setup X-API-Key and fetch
+  $.ajaxSetup({
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("X-API-Key", "9e0389d9-7d6b-4a6d-8ea8-ca0ef133a8a7");
+    },
+  });
+  $.get({
+    url: formattedURL,
+  }).then(function (response) {
+    console.log(response);
 
-      console.log(response.data[y].images.small)
-      cardInfoEl.append("<img id='pokemonCardPic' src='"+response.data[y].images.small+"'></img>")
-      .append("<p>"+response.data[y].name+"</p>")
-      .append("<p>By artist: "+response.data[y].artist+"</p>")
-      .append("<p>Set: "+response.data[y].set.series+" - "+ response.data[y].set.name+"</p>")
-      .append("<p>Rarity: "+response.data[y].rarity)
-
-
-
-
-    })
-
-
-  
+    console.log(response.data[y].images.small);
+    cardInfoEl
+      .append(
+        "<img id='pokemonCardPic' src='" +
+          response.data[y].images.small +
+          "'></img>"
+      )
+      .append("<p>" + response.data[y].name + "</p>")
+      .append("<p>By artist: " + response.data[y].artist + "</p>")
+      .append(
+        "<p>Set: " +
+          response.data[y].set.series +
+          " - " +
+          response.data[y].set.name +
+          "</p>"
+      )
+      .append("<p>Rarity: " + response.data[y].rarity);
+  });
+}
 
 // makes search button tie into JS functions when clicked
 $("#searchBtn").on("click", handleSearchClick);
