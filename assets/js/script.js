@@ -23,12 +23,13 @@ fetch(requestUrl)
     pokeType.textContent = "Type: " + data.types[0].type.name.toUpperCase();
     pokeWeight.textContent = "Weight: " + data.weight / 10 + " Kg";
     pokeHeight.textContent = "Height: " + data.height / 10 + " Meters";
-    document.getElementById("pokeSprite").src = data.sprites.front_default;
+    document.getElementById("pokeSprite").src =
+      data.sprites.other.home.front_default;
   });
 
 // Hidden jumbotron test code
+
 function hideReveal() {
-  // event.preventDefault();
   console.log("hey");
   $("#jumbotron").addClass("d-none");
   $("#pokemonInfoBox").removeClass("d-none");
