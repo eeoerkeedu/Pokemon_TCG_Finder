@@ -19,6 +19,7 @@ $('#searchBtn').on('click', function(event) {
   $('#jumbotron').addClass('d-none');
   $('#pokemonInfoBox').removeClass('d-none');
   $('#searchResults').removeClass('d-none');
+  $('#pokeDex').removeClass('d-none');
 
 })
 // modal custom js code
