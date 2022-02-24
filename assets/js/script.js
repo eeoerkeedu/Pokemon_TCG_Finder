@@ -8,6 +8,7 @@ var pokeHeight = document.getElementById("pokeHeight");
 
 //user input array pulled from local storage
 var searchHistory = [];
+var y = 0;
 
 // var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + nameExample + "/";
 
@@ -49,6 +50,14 @@ $("#pokeSprite").on("click", function () {
 //runs functions of the search button when it's clicked
 function handleSearchClick(event) {
   event.preventDefault();
+  var setDropdown = $("#sets");
+  var setSelect = setDropdown.val();
+  console.log(setSelect);
+  if (setSelect === null) {
+    window.alert("Please select a Set first, please change me!!!!!!!!!!!!!!!!");
+    return;
+  }
+
   var searchFieldInput = $("#pokemonInput");
   var userInput = $(searchFieldInput).val();
   userInput = userInput.toLowerCase();
@@ -123,7 +132,6 @@ function init() {
 }
 
 function cardFetch() {
-  var y = 0;
   var cardInfoEl = $("#pokemonCardInfoBox");
   var cardUrlQuery = "https://api.pokemontcg.io/v2/cards?q=";
   var searchBox = $("#pokemonInput");
