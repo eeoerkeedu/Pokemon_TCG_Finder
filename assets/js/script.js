@@ -23,20 +23,20 @@ fetch(requestUrl)
     pokeType.textContent = "Type: " + data.types[0].type.name.toUpperCase();
     pokeWeight.textContent = "Weight: " + data.weight / 10 + " Kg";
     pokeHeight.textContent = "Height: " + data.height / 10 + " Meters";
-    document.getElementById("pokeSprite").src = data.sprites.front_default;
+    document.getElementById("pokeSprite").src =
+      data.sprites.other.home.front_default;
   });
 
 // Hidden jumbotron test code
 $("#searchBtn").on("click", function (event) {
   event.preventDefault();
 
-  console.log('hey');
-  $('#jumbotron').addClass('d-none');
-  $('#pokemonInfoBox').removeClass('d-none');
-  $('#searchResults').removeClass('d-none');
-  $('#pokeDex').removeClass('d-none');
-
-})
+  console.log("hey");
+  $("#jumbotron").addClass("d-none");
+  $("#pokemonInfoBox").removeClass("d-none");
+  $("#searchResults").removeClass("d-none");
+  $("#pokeDex").removeClass("d-none");
+});
 // modal custom js code
 $("#vendorInfoModal").on("shown.bs.modal", function () {
   $("#myInput").trigger("focus");
