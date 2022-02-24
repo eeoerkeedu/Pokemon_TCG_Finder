@@ -39,13 +39,13 @@ function hideReveal() {
 }
 
 // modal custom js code
-$("#pokeSprite").on("click", function () {
-  $("#pokeSpriteModal").modal({
-    keyboard: true,
-    focus: true,
-    show: true,
-  });
-});
+// $("#pokeSprite").on("click", function () {
+//   $("#pokeSpriteModal").modal({
+//     keyboard: true,
+//     focus: true,
+//     show: true,
+//   });
+// });
 
 //runs functions of the search button when it's clicked
 function handleSearchClick(event) {
@@ -53,8 +53,14 @@ function handleSearchClick(event) {
   var setDropdown = $("#sets");
   var setSelect = setDropdown.val();
   console.log(setSelect);
+
   if (setSelect === null) {
-    window.alert("Please select a Set first, please change me!!!!!!!!!!!!!!!!");
+    // window.alert("Please select a Set first, please change me!!!!!!!!!!!!!!!!");
+    $("#setAlert").modal({
+      keyboard: true,
+      focus: true,
+      show: true,
+    });
     return;
   }
 
