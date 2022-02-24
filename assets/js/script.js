@@ -38,8 +38,12 @@ function hideReveal() {
 }
 
 // modal custom js code
-$("#vendorInfoModal").on("shown.bs.modal", function () {
-  $("#myInput").trigger("focus");
+$("#pokeSprite").on("click", function () {
+  $("#pokeSpriteModal").modal({
+    keyboard: true,
+    focus: true,
+    show: true,
+  });
 });
 
 //runs functions of the search button when it's clicked
