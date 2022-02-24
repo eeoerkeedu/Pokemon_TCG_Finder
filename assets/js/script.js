@@ -8,6 +8,8 @@ var pokeHeight = document.getElementById("pokeHeight");
 
 //user input array pulled from local storage
 var searchHistory = [];
+// Index variable for cardFetch function
+var y = 0;
 
 // var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + nameExample + "/";
 
@@ -123,7 +125,6 @@ function init() {
 }
 
 function cardFetch() {
-  var y = 0;
   var cardInfoEl = $("#pokemonCardInfoBox");
   var cardUrlQuery = "https://api.pokemontcg.io/v2/cards?q=";
   var searchBox = $("#pokemonInput");
@@ -151,7 +152,7 @@ function cardFetch() {
           response.data[y].images.small +
           "'></img>"
       )
-      .append("<p>" + response.data[y].name + "</p>")
+      .append("<p>Card: " + response.data[y].name + "</p>")
       .append("<p>By artist: " + response.data[y].artist + "</p>")
       .append(
         "<p>Set: " +
