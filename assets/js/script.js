@@ -8,8 +8,6 @@ var pokeHeight = document.getElementById("pokeHeight");
 
 //user input array pulled from local storage
 var searchHistory = [];
-// Index variable for cardFetch function
-var y = 0;
 
 // var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + nameExample + "/";
 
@@ -18,8 +16,8 @@ var y = 0;
 //     return response.json();
 //   })
 //   .then(function (data) {
-//     console.log(data);
-//     // ADDED FOR DATA PULL
+  //     console.log(data);
+  //     // ADDED FOR DATA PULL
 //     pokeName.textContent = "Name: " + data.name.toUpperCase();
 //     pokeID.textContent = "ID: " + data.id;
 //     pokeType.textContent = "Type: " + data.types[0].type.name.toUpperCase();
@@ -57,9 +55,9 @@ function handleSearchClick(event) {
 
   //fetch for data fields and sprite pic
   var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + userInput + "/";
-
+  
   fetch(requestUrl)
-    .then(function (response) {
+  .then(function (response) {
       return response.json();
     })
     .then(function (data) {
@@ -71,17 +69,17 @@ function handleSearchClick(event) {
       pokeWeight.textContent = "Weight: " + data.weight / 10 + " Kg";
       pokeHeight.textContent = "Height: " + data.height / 10 + " Meters";
       document.getElementById("pokeSprite").src =
-        data.sprites.other.home.front_default;
+      data.sprites.other.home.front_default;
     })
     .catch(function () {
       pokeName.textContent =
-        "Uh oh, it looks like we don't have that particular Pokemon. Did you spell everything correctly?";
+      "Uh oh, it looks like we don't have that particular Pokemon. Did you spell everything correctly?";
       document.getElementById("pokeSprite").src =
-        "https://images.unsplash.com/photo-1525785967371-87ba44b3e6cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80";
+      "https://images.unsplash.com/photo-1525785967371-87ba44b3e6cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80";
     });
-  // runs actual search function ***
-  // Austin - Added Function Call for Card Fetch
-  cardFetch();
+    // runs actual search function ***
+    // Austin - Added Function Call for Card Fetch
+    cardFetch();
   // End Austin Adds
   hideReveal();
   handleHistoryStore();
@@ -95,7 +93,7 @@ function handleHistoryStore() {
   if (searchHistory.length > 10) {
     searchHistory.pop();
   }
-
+  
   localStorage.setItem("pokeHistory", JSON.stringify(searchHistory));
 }
 
@@ -125,7 +123,10 @@ function init() {
 }
 
 function cardFetch() {
+  // Index variable for cardFetch function
+  var y = 0;
   var cardInfoEl = $("#pokemonCardInfoBox");
+  var cardSearchResultsEl = $("#cardSearchResults");
   var cardUrlQuery = "https://api.pokemontcg.io/v2/cards?q=";
   var searchBox = $("#pokemonInput");
   var searchInput = "name:" + searchBox.val();
@@ -144,7 +145,7 @@ function cardFetch() {
     url: formattedURL,
   }).then(function (response) {
     console.log(response);
-
+    
     console.log(response.data[y].images.small);
     cardInfoEl
       .append(
