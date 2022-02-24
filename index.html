@@ -71,21 +71,40 @@
     </div> -->
 
 
+  <!-- Pokedex -->
+    <div id="pokeDex" class="row container-fluid bg-dark text-light mx-auto my-3 p-3 border border-3 border-danger d-none">
+      <div class="col-12 col-md-6" id="pokeInfoBox">
+        <h2 style="text-decoration: underline;">Pokedex Entry</h2>
+        <ul id="pokeInfoList" style="list-style: none;" class="">
+          <li style="font-weight:bold" class="" id="pokeName"></li>
+          <li id="pokeID"></li>
+          <li id="pokeType"></li>
+          <li id="pokeWeight"></li>
+          <li id="pokeHeight"></li>
+        </ul>
+      </div>
+      <div class="col-12 col-md-6 border border-1 border-light">
+        <img id="pokeSprite" src="" alt="Pokemon's sprite image from the videogame">
+      </div>
+    </div>
+
     <div id="resultsDisplay" class="row w-100">
       <!-- sidebar menu with search results -->
       <div id="searchResults" class="col-2 mx.5 d-none">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">A fourth item</li>
-          <li class="list-group-item">And a fifth one</li>
+        <ul id="cardResults" class="list-group list-group-flush">
+          <li class="list-group-item border-danger">An item</li>
+          <li class="list-group-item border-danger">A second item</li>
+          <li class="list-group-item border-danger">A third item</li>
+          <li class="list-group-item border-danger">A fourth item</li>
+          <li class="list-group-item border-danger">And a fifth one</li>
         </ul>
       </div>
 
       <!-- Pokemon Info Box after search -->
+
       <div id="pokemonInfoBox" class="card d-none col-10 mx-.5">
         <img id="pokemonCardPic" src="" class="card-img-top" alt="">
+
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -94,6 +113,7 @@
       </div>
 
     </div>
+
   <div class="row container-fluid bg-dark text-light mx-auto my-3 p-3 border border-3 border-danger">
     <div class="col-12 col-md-6" id="pokeInfoBox">
       <h2 style="text-decoration: underline;">Pokedex Entry</h2>
@@ -109,6 +129,7 @@
       <img id="pokeSprite" src="" alt="Pokemon's sprite image from the videogame">
     </div>
   </div>
+
 
 <!-- Modal -->
     <div class="modal fade" id="nameAlertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel"
