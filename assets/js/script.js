@@ -39,9 +39,39 @@ $("#vendorInfoModal").on("shown.bs.modal", function () {
   $("#myInput").trigger("focus");
 });
 
+//runs functions of the search button
+function handleSearchClick() {
+  var searchFieldInput = $("#pokemonInput");
+  var userInput = $(searchFieldInput).val();
+
+  searchHistory.unshift(userInput);
+
+  // runs actual search function ***
+
+  handleHistoryStore();
+  handleAutocompleteDisplay();
+}
+
+// stores user's searches in local storage to be accessed by handleAutocompleteDisplay()
+function handleHistoryStore() {
+  localStorage.setItem("pokeHistory", JSON.stringify(searchHistory));
+}
+
+//retrives the users' history from local storage to add back to the autocomplete
+function handleAutocompleteDisplay() {
+  var savedNames = JSON.parse(localStorage.getItem("pokeHistory"));
+  if (savedNames !== null) {
+    searchHistory = savedNames;
+  }
+}
+
+// creates autocomplate function on searchbar
 $(function () {
   var availableNames = searchHistory;
   $("#pokemonInput").autocomplete({
     source: availableNames,
   });
 });
+
+// makes search button tie into JS functions when clicked
+$("#searchBtn").on("click", handleSearchClick);
