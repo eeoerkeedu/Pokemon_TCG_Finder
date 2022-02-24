@@ -28,27 +28,28 @@ fetch(requestUrl)
   });
 
 // Hidden jumbotron test code
-$("#searchBtn").on("click", function (event) {
-  event.preventDefault();
 
+function hideReveal() {
   console.log("hey");
   $("#jumbotron").addClass("d-none");
   $("#pokemonInfoBox").removeClass("d-none");
   $("#searchResults").removeClass("d-none");
   $("#pokeDex").removeClass("d-none");
-});
+}
+
 // modal custom js code
 $("#vendorInfoModal").on("shown.bs.modal", function () {
   $("#myInput").trigger("focus");
 });
 
 //runs functions of the search button when it's clicked
-function handleSearchClick() {
+function handleSearchClick(event) {
+  event.preventDefault();
   var searchFieldInput = $("#pokemonInput");
   var userInput = $(searchFieldInput).val();
 
   // runs actual search function ***
-
+  hideReveal();
   handleHistoryStore();
   handleAutocompleteDisplay();
   searchHistory.unshift(userInput);
