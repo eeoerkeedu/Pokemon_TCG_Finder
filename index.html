@@ -42,8 +42,16 @@
             </li>
           </ul>
           <form class="d-flex ui-widget">
-            <input id="pokemonInput" class="form-control me-2" type="search" placeholder="Search for a card here" aria-label="Search">
-            <button id="searchBtn" class="btn btn-outline-success" type="submit">Search</button>
+            <!-- Quick dropdown set selector. We can easily add more sets -->
+            <select name ="sets" id="sets" class="border border-danger rounded mx-1">
+              <option value="none" selected disabled hidden>Select a Current Expansion</option>
+              <option value="swsh5">Battle Styles</option>
+              <option value="swsh6">Chilling Reign</option>
+              <option value="swsh7">Evolving Skies</option>
+              <option value="swsh8">Fusion Strike</option>
+            </select>
+            <input id="pokemonInput" class="form-control me-2 border-danger" type="search" placeholder="Search for a card here" aria-label="Search">
+            <button id="searchBtn" class="btn btn-outline-danger" type="submit">Search</button>
           </form>
         </div>
       </div>
