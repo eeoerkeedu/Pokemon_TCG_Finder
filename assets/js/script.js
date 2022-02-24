@@ -8,6 +8,9 @@ var pokeHeight = document.getElementById("pokeHeight");
 
 var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + nameExample + "/";
 
+//user input array pulled from local storage
+var searchHistory = [];
+
 fetch(requestUrl)
   .then(function (response) {
     return response.json();
@@ -35,3 +38,56 @@ $("#searchBtn").on("click", function (event) {
 $("#vendorInfoModal").on("shown.bs.modal", function () {
   $("#myInput").trigger("focus");
 });
+
+//runs functions of the search button when it's clicked
+function handleSearchClick() {
+  var searchFieldInput = $("#pokemonInput");
+  var userInput = $(searchFieldInput).val();
+
+  // runs actual search function ***
+
+  handleHistoryStore();
+  handleAutocompleteDisplay();
+  searchHistory.unshift(userInput);
+  $("#pokemonInput").val("");
+}
+
+// stores user's searches in local storage to be accessed by handleAutocompleteDisplay()
+function handleHistoryStore() {
+  if (searchHistory.length > 10) {
+    searchHistory.pop();
+  }
+
+  localStorage.setItem("pokeHistory", JSON.stringify(searchHistory));
+}
+
+//retrives the users' history from local storage to add back to the autocomplete
+function handleAutocompleteDisplay() {
+  var savedNames = JSON.parse(localStorage.getItem("pokeHistory"));
+  if (savedNames !== null) {
+    searchHistory = savedNames;
+  }
+}
+
+// creates autocomplate function on searchbar
+$(function () {
+  var availableNames = searchHistory;
+  $("#pokemonInput").autocomplete({
+    classes: {
+      "ui-autocomplete": "highlight",
+    },
+    source: availableNames,
+    minLength: 0,
+  });
+});
+
+//initializes certain aspects on page load when called
+function init() {
+  handleAutocompleteDisplay();
+}
+
+// makes search button tie into JS functions when clicked
+$("#searchBtn").on("click", handleSearchClick);
+
+//calls the init function on page load
+init();
