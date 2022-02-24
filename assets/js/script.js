@@ -9,6 +9,9 @@ var pokeHeight = document.getElementById("pokeHeight");
 //user input array pulled from local storage
 var searchHistory = [];
 
+// Index variable for cardFetch function
+var y = 0;
+
 // var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + nameExample + "/";
 
 // fetch(requestUrl)
@@ -123,8 +126,6 @@ function init() {
 }
 
 function cardFetch() {
-  // Index variable for cardFetch function
-  var y = 0;
   var cardInfoEl = $("#pokemonCardInfoBox");
   var cardSearchResultsEl = $("#cardSearchResults");
   var cardUrlQuery = "https://api.pokemontcg.io/v2/cards?q=";
@@ -149,6 +150,8 @@ function cardFetch() {
     console.log(response.data[y].images.small);
 
     // Populate Pokemon Card Info Box 
+    cardInfoEl.empty();
+
     cardInfoEl
       .append(
         "<img id='pokemonCardPic' src='" +
@@ -156,7 +159,7 @@ function cardFetch() {
           "'></img>"
       )
       .append("<p>Card: " + response.data[y].name + "</p>")
-      .append("<p>By artist: " + response.data[y].artist + "</p>")
+      .append("<p>By Artist: " + response.data[y].artist + "</p>")
       .append(
         "<p>Set: " +
           response.data[y].set.series +
@@ -165,6 +168,19 @@ function cardFetch() {
           "</p>"
       )
       .append("<p>Rarity: " + response.data[y].rarity);
+
+      for (let i = 0; i < response.data.length; i++) {
+        cardSearchResultsEl.append("<button value='" + 
+        i + 
+        "' type = 'button'>" + 
+        response.data[i].name +
+        " ID: " +
+        response.data[i].id +
+        " " +
+        response.data[i].rarity +
+        "</button>")
+      }
+
   });
 }
 
