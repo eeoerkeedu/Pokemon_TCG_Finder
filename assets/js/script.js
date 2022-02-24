@@ -39,21 +39,25 @@ $("#vendorInfoModal").on("shown.bs.modal", function () {
   $("#myInput").trigger("focus");
 });
 
-//runs functions of the search button
+//runs functions of the search button when it's clicked
 function handleSearchClick() {
   var searchFieldInput = $("#pokemonInput");
   var userInput = $(searchFieldInput).val();
-
-  searchHistory.unshift(userInput);
 
   // runs actual search function ***
 
   handleHistoryStore();
   handleAutocompleteDisplay();
+  searchHistory.unshift(userInput);
+  $("#pokemonInput").val("");
 }
 
 // stores user's searches in local storage to be accessed by handleAutocompleteDisplay()
 function handleHistoryStore() {
+  if (searchHistory.length > 10) {
+    searchHistory.pop();
+  }
+
   localStorage.setItem("pokeHistory", JSON.stringify(searchHistory));
 }
 
@@ -69,9 +73,21 @@ function handleAutocompleteDisplay() {
 $(function () {
   var availableNames = searchHistory;
   $("#pokemonInput").autocomplete({
+    classes: {
+      "ui-autocomplete": "highlight",
+    },
     source: availableNames,
+    minLength: 0,
   });
 });
 
+//initializes certain aspects on page load when called
+function init() {
+  handleAutocompleteDisplay();
+}
+
 // makes search button tie into JS functions when clicked
 $("#searchBtn").on("click", handleSearchClick);
+
+//calls the init function on page load
+init();
