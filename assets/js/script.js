@@ -56,7 +56,6 @@ function handleSearchClick(event) {
   //fetch for data fields and sprite pic
   var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + userInput + "/";
 
-  
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
@@ -71,6 +70,12 @@ function handleSearchClick(event) {
       pokeHeight.textContent = "Height: " + data.height / 10 + " Meters";
       document.getElementById("pokeSprite").src =
         data.sprites.other.home.front_default;
+    })
+    .catch(function () {
+      pokeName.textContent =
+        "Uh oh, it looks like we don't have that particular Pokemon. Did you spell everything correctly?";
+      document.getElementById("pokeSprite").src =
+        "https://images.unsplash.com/photo-1525785967371-87ba44b3e6cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80";
     });
   // runs actual search function ***
   // Austin - Added Function Call for Card Fetch
@@ -81,7 +86,6 @@ function handleSearchClick(event) {
   handleAutocompleteDisplay();
   searchHistory.unshift(userInput);
   $("#pokemonInput").val("");
-
 }
 
 // stores user's searches in local storage to be accessed by handleAutocompleteDisplay()
@@ -118,33 +122,28 @@ function init() {
   handleAutocompleteDisplay();
 }
 
-function cardFetch(){
-
+function cardFetch() {
   var cardInfoEl = $("#pokemonCardInfoBox");
   var cardUrlQuery = "https://api.pokemontcg.io/v2/cards?q=";
-  var searchBox = $("#pokemonInput")
-  var searchInput = "name:"+searchBox.val();
+  var searchBox = $("#pokemonInput");
+  var searchInput = "name:" + searchBox.val();
   var setDropdown = $("#sets");
   var setSelect = setDropdown.val();
-  var setSelectURL = " set.id:"+setSelect;
-  var formattedURL = cardUrlQuery+searchInput+setSelectURL;
+  var setSelectURL = " set.id:" + setSelect;
+  var formattedURL = cardUrlQuery + searchInput + setSelectURL;
 
-      // Setup X-API-Key and fetch
-      $.ajaxSetup({
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader('X-API-Key', "9e0389d9-7d6b-4a6d-8ea8-ca0ef133a8a7");
-        }
-    })  
-    $.get({
-      url: formattedURL
-    })
-    .then(function (response){
-      console.log(response);
-    })
-
+  // Setup X-API-Key and fetch
+  $.ajaxSetup({
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("X-API-Key", "9e0389d9-7d6b-4a6d-8ea8-ca0ef133a8a7");
+    },
+  });
+  $.get({
+    url: formattedURL,
+  }).then(function (response) {
+    console.log(response);
+  });
 }
-
-
 
 // makes search button tie into JS functions when clicked
 $("#searchBtn").on("click", handleSearchClick);
