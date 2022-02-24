@@ -118,6 +118,9 @@ function init() {
   handleAutocompleteDisplay();
 }
 
+
+var y = 0;
+
 function cardFetch(){
 
   var cardInfoEl = $("#pokemonCardInfoBox");
@@ -140,6 +143,17 @@ function cardFetch(){
     })
     .then(function (response){
       console.log(response);
+
+      console.log(response.data[y].images.small)
+      cardInfoEl.append("<img id='pokemonCardPic' src='"+response.data[y].images.small+"'></img>")
+      .append("<p>"+response.data[y].name+"</p>")
+      .append("<p>By artist: "+response.data[y].artist+"</p>")
+      .append("<p>Set: "+response.data[y].set.series+" - "+ response.data[y].set.name+"</p>")
+      .append("<p>Rarity: "+response.data[y].rarity)
+
+
+
+
     })
 
 }
