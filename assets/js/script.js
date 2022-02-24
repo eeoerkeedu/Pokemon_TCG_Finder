@@ -47,10 +47,12 @@ function handleSearchClick(event) {
   event.preventDefault();
   var searchFieldInput = $("#pokemonInput");
   var userInput = $(searchFieldInput).val();
+  userInput = userInput.toLowerCase();
 
   //fetch for data fields and sprite pic
   var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + userInput + "/";
 
+  
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
@@ -67,11 +69,15 @@ function handleSearchClick(event) {
         data.sprites.other.home.front_default;
     });
   // runs actual search function ***
+  // Austin - Added Function Call for Card Fetch
+  cardFetch();
+  // End Austin Adds
   hideReveal();
   handleHistoryStore();
   handleAutocompleteDisplay();
   searchHistory.unshift(userInput);
   $("#pokemonInput").val("");
+
 }
 
 // stores user's searches in local storage to be accessed by handleAutocompleteDisplay()
@@ -107,6 +113,34 @@ $(function () {
 function init() {
   handleAutocompleteDisplay();
 }
+
+function cardFetch(){
+
+  var cardInfoEl = $("#pokemonCardInfoBox");
+  var cardUrlQuery = "https://api.pokemontcg.io/v2/cards?q=";
+  var searchBox = $("#pokemonInput")
+  var searchInput = "name:"+searchBox.val();
+  var setDropdown = $("#sets");
+  var setSelect = setDropdown.val();
+  var setSelectURL = " set.id:"+setSelect;
+  var formattedURL = cardUrlQuery+searchInput+setSelectURL;
+
+      // Setup X-API-Key and fetch
+      $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-API-Key', "9e0389d9-7d6b-4a6d-8ea8-ca0ef133a8a7");
+        }
+    })  
+    $.get({
+      url: formattedURL
+    })
+    .then(function (response){
+      console.log(response);
+    })
+
+}
+
+
 
 // makes search button tie into JS functions when clicked
 $("#searchBtn").on("click", handleSearchClick);
