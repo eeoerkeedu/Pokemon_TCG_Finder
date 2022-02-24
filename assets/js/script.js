@@ -52,6 +52,7 @@ function handleSearchClick(event) {
   event.preventDefault();
   var setDropdown = $("#sets");
   var setSelect = setDropdown.val();
+  console.log(setSelect);
 
   if (setSelect === null) {
     // window.alert("Please select a Set first, please change me!!!!!!!!!!!!!!!!");
