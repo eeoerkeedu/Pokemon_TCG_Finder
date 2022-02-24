@@ -3,9 +3,32 @@
   padding: 0;
 }
 
+#pokeSprite:hover{
+  cursor: zoom-in;
+}
+
+#pokemonCardInfoBox {
+  margin: 100px;
+  border: none;
+}
+
 #pokemonCardInfoBox img{
   width: 300px;
   height: 400px;
+}
+#pokemonCardInfoBox img:hover{
+  border: solid 1px #363b81;
+  border-radius: 10px;
+  cursor: zoom-in;
+}
+
+#pokemonCardInfoBox p{
+  text-align: center;
+  width: 300px;
+}
+
+#pokemonCardInfoBox p:hover{
+  background-color: #5db9ff;
 }
 
 
