@@ -147,6 +147,8 @@ function cardFetch() {
     console.log(response);
     
     console.log(response.data[y].images.small);
+
+    // Populate Pokemon Card Info Box 
     cardInfoEl
       .append(
         "<img id='pokemonCardPic' src='" +
