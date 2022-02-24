@@ -83,8 +83,8 @@
           <li id="pokeHeight"></li>
         </ul>
       </div>
-      <div class="col-12 col-md-6 border border-1 border-light">
-        <img id="pokeSprite" src="" alt="Pokemon's sprite image from the videogame">
+      <div class="col-12 col-md-6 bg-light border border-1 border-light">
+        <img id="pokeSprite" src="" alt="Pokemon's art image from the videogame">
       </div>
     </div>
 
@@ -114,25 +114,44 @@
 
     </div>
 
-<!-- Modal Card Art-->
+    <!-- Modal Big Poke Art-->
     <div class="modal fade" id="nameAlertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="alertModalLabel">Note: Invaild Name or ID</h5>
+            <h5 class="modal-title" id="pokeName"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>
-              The Name or ID entered is not a vaild entry, please check your spelling or try a different name.
-            </p>
+            <img id="pokeSprite" src="" alt="Pokemon's art image from the videogame">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Big Card Art-->
+    <div class="modal fade" id="nameAlertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title card-title"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
+          <div class="modal-body">
+            <img id="largeCardArt" src="" alt="">
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div> -->
         </div>
       </div>
     </div>
