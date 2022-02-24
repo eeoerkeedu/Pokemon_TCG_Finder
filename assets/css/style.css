@@ -3,6 +3,12 @@
   padding: 0;
 }
 
+#pokemonCardInfoBox img{
+  width: 300px;
+  height: 400px;
+}
+
+
 @media all {
   div#pokeDex {
     width: 750px;
