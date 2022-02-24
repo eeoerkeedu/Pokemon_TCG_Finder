@@ -8,6 +8,9 @@ var pokeHeight = document.getElementById("pokeHeight");
 
 var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + nameExample + "/";
 
+//user input array pulled from local storage
+var searchHistory = [];
+
 fetch(requestUrl)
   .then(function (response) {
     return response.json();
@@ -34,4 +37,11 @@ $("#searchBtn").on("click", function (event) {
 // modal custom js code
 $("#vendorInfoModal").on("shown.bs.modal", function () {
   $("#myInput").trigger("focus");
+});
+
+$(function () {
+  var availableNames = searchHistory;
+  $("#pokemonInput").autocomplete({
+    source: availableNames,
+  });
 });
