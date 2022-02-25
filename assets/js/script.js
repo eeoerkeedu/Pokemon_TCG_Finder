@@ -220,10 +220,10 @@ function handleLargeCardModal() {
 };
 
 //shows a larger version of the pokedex art when the picture is clicked
-$("#pokemonCardPic").on("click", function handlePokeArtModal() {
+$("#pokeSprite").on("click", function handlePokeArtModal() {
   var largePokeArtHolder = $("#pokeSpriteLrg");
   var largePokeArt = localStorage.getItem("largePokeArt")
-  largeCardArtHolder.attr("src", largeCardArt);
+  largePokeArtHolder.attr("src", largePokeArt);
   console.log(localStorage.getItem("largeCardArt"));
   $('#pokedexImgModal').modal('show');
 });
