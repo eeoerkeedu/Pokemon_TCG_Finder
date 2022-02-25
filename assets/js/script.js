@@ -200,6 +200,9 @@ function cardFetch() {
       $("#pokemonCardPic").on("click", handleLargeCardModal)
 
       cardSearchResultsEl.empty();
+      cardSearchResultsEl.append("<h4>Card Variants</h4>");
+      cardSearchResultsEl.children("h4").css("text-align", "center");
+      
       for (let i = 0; i < response.data.length; i++) {
         cardSearchResultsEl.append("<button class = 'cardOption' value='" + 
         i + 
