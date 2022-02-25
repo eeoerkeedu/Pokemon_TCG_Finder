@@ -9,12 +9,25 @@
 
 #pokemonCardInfoBox {
   border: none;
+  background-color: #363b81;
+  color: white;
+  width: auto;
 }
 
 #pokemonCardInfoBox img{
   width: 300px;
   height: 400px;
 }
+
+#pokemonCardInfoBox p {
+  font-weight: bolder;
+}
+
+#pokemonCardInfoBox a {
+  color: white;
+}
+
+
 #pokemonCardInfoBox img:hover{
   border: solid 1px #363b81;
   border-radius: 10px;
