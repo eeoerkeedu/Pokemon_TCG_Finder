@@ -10,7 +10,6 @@ var setAlertModal = document.getElementById('setAlert')
 
 //user input array pulled from local storage
 var searchHistory = [];
-var y = 0;
 
 // Index variable for cardFetch function
 var y = 0;
@@ -59,6 +58,12 @@ function handleSearchClick(event) {
   var searchFieldInput = $("#pokemonInput");
   var userInput = $(searchFieldInput).val();
   userInput = userInput.toLowerCase();
+  
+  // Austin - Added Function Call for Card Fetch
+  localStorage.setItem('searchString', userInput);
+  localStorage.setItem('setString', setSelect);
+  cardFetch();
+  // End Austin Adds
 
   //fetch for data fields and sprite pic
   var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + userInput + "/";
@@ -85,9 +90,6 @@ function handleSearchClick(event) {
       "https://images.unsplash.com/photo-1525785967371-87ba44b3e6cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80";
     });
     // runs actual search function ***
-    // Austin - Added Function Call for Card Fetch
-    cardFetch();
-  // End Austin Adds
   hideReveal();
   handleHistoryStore();
   handleAutocompleteDisplay();
@@ -133,10 +135,8 @@ function cardFetch() {
   var cardInfoEl = $("#pokemonCardInfoBox");
   var cardSearchResultsEl = $("#cardSearchResults");
   var cardUrlQuery = "https://api.pokemontcg.io/v2/cards?q=";
-  var searchBox = $("#pokemonInput");
-  var searchInput = "name:" + searchBox.val();
-  var setDropdown = $("#sets");
-  var setSelect = setDropdown.val();
+  var searchInput = "name:" + localStorage.getItem("searchString");
+  var setSelect = localStorage.getItem("setString");
   var setSelectURL = " set.id:" + setSelect;
   var formattedURL = cardUrlQuery + searchInput + setSelectURL;
 
@@ -155,7 +155,7 @@ function cardFetch() {
 
     // Populate Pokemon Card Info Box 
     cardInfoEl.empty();
-
+    console.log("Card Fetch Ran")
     cardInfoEl
       .append(
         "<img id='pokemonCardPic' src='" +
@@ -172,9 +172,11 @@ function cardFetch() {
           "</p>"
       )
       .append("<p>Rarity: " + response.data[y].rarity);
+      console.log("Made it to line 185");
 
+      cardSearchResultsEl.empty();
       for (let i = 0; i < response.data.length; i++) {
-        cardSearchResultsEl.append("<button value='" + 
+        cardSearchResultsEl.append("<button class = 'cardOption' value='" + 
         i + 
         "' type = 'button'>" + 
         response.data[i].name +
@@ -185,7 +187,18 @@ function cardFetch() {
         "</button>")
       }
 
-  });
+      cardSearchResultsEl.on('click', '.cardOption', function(event){
+        event.preventDefault();
+        let targetButton = $(event.target);
+        y = targetButton.val();
+        cardFetch();
+      })
+    })
+    .catch(function(){
+      cardInfoEl.empty();
+      cardSearchResultsEl.empty();
+      cardInfoEl.append("<h3>Oops! We couldn't find any cards matching that search! Double check that you spelled the card correctly, and that it's from the set you selected</h3>")
+    });
 }
 
 //shows a larger version of the pokedex art when the picture is clicked
