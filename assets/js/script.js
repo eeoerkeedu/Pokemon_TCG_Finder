@@ -172,6 +172,20 @@ function cardFetch() {
           "</p>"
       )
       .append("<p>Rarity: " + response.data[y].rarity);
+
+
+      if (response.data[y].cardmarket != undefined && response.data[y].cardmarket != null){
+        cardInfoEl.append("<p>Average Price: $" +
+        response.data[y].cardmarket.prices.averageSellPrice +
+        "</p>")
+        .append("<a href='" +
+        response.data[y].cardmarket.url +
+        "' target ='_blank'> View Market Information About " +
+        response.data[y].name +
+        "</a>")
+      }
+
+
       console.log("Made it to line 185");
 
       cardSearchResultsEl.empty();
