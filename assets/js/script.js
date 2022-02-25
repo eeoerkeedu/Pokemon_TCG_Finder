@@ -83,6 +83,8 @@ function handleSearchClick(event) {
       pokeHeight.textContent = "Height: " + data.height / 10 + " Meters";
       document.getElementById("pokeSprite").src =
       data.sprites.other.home.front_default;
+      localStorage.setItem("largePokeArt", data.sprites.other.home.front_default);
+      
     })
     .catch(function () {
       pokeName.textContent =
@@ -141,6 +143,7 @@ function cardFetch() {
   var setSelectURL = " set.id:" + setSelect;
   var formattedURL = cardUrlQuery + searchInput + setSelectURL;
 
+  console.log()
   // Setup X-API-Key and fetch
   $.ajaxSetup({
     beforeSend: function (xhr) {
@@ -152,6 +155,7 @@ function cardFetch() {
   }).then(function (response) {
     console.log(response);
     
+    localStorage.setItem('largeCardArt', response.data[y].images.large);
     console.log(response.data[y].images.small);
 
     // Populate Pokemon Card Info Box 
@@ -188,6 +192,8 @@ function cardFetch() {
 
 
       console.log("Made it to line 185");
+      
+      $("#pokemonCardPic").on("click", handleLargeCardModal)
 
       cardSearchResultsEl.empty();
       for (let i = 0; i < response.data.length; i++) {
@@ -209,6 +215,7 @@ function cardFetch() {
         cardFetch();
       })
     })
+    
     .catch(function(){
       cardInfoEl.empty();
       cardSearchResultsEl.empty();
@@ -216,16 +223,25 @@ function cardFetch() {
     });
 }
 
-//shows a larger version of the pokedex art when the picture is clicked
-$("#pokeSprite").on("click", function() {
-  $('#pokedexImgModal').modal('show');
-});
 
 //shows a larger version of the selected card art when the card picture is clicked
-$("#pokemonCardPic").on("click", function() {
-  $('#cardImgModal').modal('show');
-});
 
+function handleLargeCardModal() {
+  var largeCardArtHolder = $("#pokemonCardPicLrg");
+  var largeCardArt = localStorage.getItem("largeCardArt")
+  largeCardArtHolder.attr("src", largeCardArt);
+  console.log(localStorage.getItem("largeCardArt"));
+  $('#cardImgModal').modal('show');
+};
+
+//shows a larger version of the pokedex art when the picture is clicked
+$("#pokeSprite").on("click", function handlePokeArtModal() {
+  var largePokeArtHolder = $("#pokeSpriteLrg");
+  var largePokeArt = localStorage.getItem("largePokeArt")
+  largePokeArtHolder.attr("src", largePokeArt);
+  console.log(localStorage.getItem("largeCardArt"));
+  $('#pokedexImgModal').modal('show');
+});
 
 // makes search button tie into JS functions when clicked
 $("#searchBtn").on("click", handleSearchClick);
