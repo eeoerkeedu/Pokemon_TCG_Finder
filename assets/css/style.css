@@ -692,7 +692,7 @@
   div#bg_curve1_right {
     width: 350px;
     height: 80px;
-    background-color: rgb(68, 68, 68);
+    background-color:#fff;
 
     border-top-right-radius: 30px;
     -webkit-border-top-right-radius: 30px;
