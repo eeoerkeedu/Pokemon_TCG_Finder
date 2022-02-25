@@ -40,6 +40,7 @@ function hideReveal() {
   $("#pokemonInfoBox").removeClass("d-none");
   $("#searchResults").removeClass("d-none");
   $("#pokeDex").removeClass("d-none");
+  $("#resultsDisplay").removeClass("d-none");
 }
 
 //runs functions of the search button when it's clicked
