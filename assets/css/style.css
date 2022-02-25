@@ -3,10 +3,6 @@
   padding: 0;
 }
 
-main{
-  background-color: rgb(68, 68, 68);
-}
-
 .modal-header,
 .modal-footer {
   color: #fbd743;
@@ -328,7 +324,7 @@ main{
 
   div#picture {
     height: 175px;
-    width: 254px;
+    width: 230px;
     margin-top: 20px;
     margin-bottom: 9px;
     background-color: #fff;
