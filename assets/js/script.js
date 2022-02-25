@@ -5,6 +5,8 @@ var pokeID = document.getElementById("pokeID");
 var pokeType = document.getElementById("pokeType");
 var pokeWeight = document.getElementById("pokeWeight");
 var pokeHeight = document.getElementById("pokeHeight");
+var setAlertModal = document.getElementById('setAlert')
+
 
 //user input array pulled from local storage
 var searchHistory = [];
@@ -41,15 +43,6 @@ function hideReveal() {
   $("#pokeDex").removeClass("d-none");
 }
 
-// modal custom js code
-// $("#pokeSprite").on("click", function () {
-//   $("#pokeSpriteModal").modal({
-//     keyboard: true,
-//     focus: true,
-//     show: true,
-//   });
-// });
-
 //runs functions of the search button when it's clicked
 function handleSearchClick(event) {
   event.preventDefault();
@@ -58,12 +51,8 @@ function handleSearchClick(event) {
   console.log(setSelect);
 
   if (setSelect === null) {
-    // window.alert("Please select a Set first, please change me!!!!!!!!!!!!!!!!");
-    $("#setAlert").modal({
-      keyboard: true,
-      focus: true,
-      show: true,
-    });
+    // alert("Please select a Set first, please change me!!!!!!!!!!!!!!!!");
+    $('#setAlert').modal('show');
     return;
   }
 
@@ -198,6 +187,17 @@ function cardFetch() {
 
   });
 }
+
+//shows a larger version of the pokedex art when the picture is clicked
+$("#pokeSprite").on("click", function() {
+  $('#pokedexImgModal').modal('show');
+});
+
+//shows a larger version of the selected card art when the card picture is clicked
+$("#pokemonCardPic").on("click", function() {
+  $('#cardImgModal').modal('show');
+});
+
 
 // makes search button tie into JS functions when clicked
 $("#searchBtn").on("click", handleSearchClick);

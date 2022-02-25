@@ -188,68 +188,58 @@
     </div>
 
     <!-- Modal alerts to no set selection-->
-    <div class="modal fade bd-example-modal-lg" id="setAlert" tabindex="-1" role="dialog"
-      aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <p>
-            "Please select a Set first!"
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal Big Poke Art-->
-    <!-- <div class="modal fade bd-example-modal-lg" id="pokeSpriteModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <img id="pokeImgLarge" src="" alt="Pokemon's art image from the videogame">
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <div class="modal fade" id="pokeSpriteModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
+    <div class="modal fade" id="setAlert" tabindex="-1" aria-labelledby="select a Current Expansion" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="pokeName"></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <h5 class="modal-title" id="invaildSelection">Invaild Expansion Selection</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <img id="pokeImgLarge" src="" alt="Pokemon's art image from the videogame">
+            Please select a Current Expansion first!
           </div>
           <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- Modal Big Card Art-->
-    <div class="modal fade" id="nameAlertModal" tabindex="-1" role="dialog" aria-labelledby="Set Alert Modal"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title card-title"></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
-          <div class="modal-body">
-            <img id="largeCardArt" src="" alt="">
-          </div>
-          <!-- <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div> -->
         </div>
       </div>
     </div>
 
+    <!-- Modal shows larger pokedex art-->
+    <div class="modal fade" id="pokedexImgModal" tabindex="-1" aria-labelledby="largerPokeArt" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title" id="exampleModalLabel">Invaild Expansion Selection</h5> -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <img id="pokeSprite" class="" src="" alt="Pokemon's art image from the videogame"/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal shows larger pokedex art-->
+    <div class="modal fade" id="cardImgModal" tabindex="-1" aria-labelledby="largerPokeArt" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- <h5 class="modal-title" id="exampleModalLabel">Invaild Expansion Selection</h5> -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <img id="pokemonCardPic" class="" src="" alt="larger version of card art"/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
       
   </main>  
 
