@@ -40,6 +40,29 @@
   background-color: rgb(68, 68, 68)
 }
 
+@media screen and (max-width: 770px) {
+
+  #resultsDisplay {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  }
+
+  #pokemonCardInfoBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col-2 {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    }
+}
+
 #rotatePokedexHeader {
   display: none;
 }
