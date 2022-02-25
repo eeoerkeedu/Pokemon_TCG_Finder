@@ -185,7 +185,7 @@ function cardFetch() {
         "</p>")
         .append("<a href='" +
         response.data[y].cardmarket.url +
-        "' target ='_blank'> View Market Information About " +
+        "' target ='_blank'> Market for " +
         response.data[y].name +
         "</a>")
       }
