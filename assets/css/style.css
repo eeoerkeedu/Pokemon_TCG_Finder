@@ -3,6 +3,29 @@
   padding: 0;
 }
 
+.cardOption {
+  margin: 3px;
+  background-color: white;
+  border-radius: 8px;
+  border: 2px solid #5db9ff;
+  width: 100%;
+}
+
+.cardOption:hover {
+  color: white;
+  background-color: #5db9ff;
+}
+
+.cardOption:focus {
+  color: white;
+  background-color: #363b81;
+}
+
+.cardOption:active {
+  color: white;
+  background-color: #363b81;
+}
+
 #pokeSprite:hover{
   cursor: zoom-in;
 }
