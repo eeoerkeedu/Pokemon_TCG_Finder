@@ -82,6 +82,8 @@ function handleSearchClick(event) {
       pokeHeight.textContent = "Height: " + data.height / 10 + " Meters";
       document.getElementById("pokeSprite").src =
       data.sprites.other.home.front_default;
+      localStorage.setItem("largePokeArt", data.sprites.other.home.front_default);
+      
     })
     .catch(function () {
       pokeName.textContent =
@@ -206,10 +208,6 @@ function cardFetch() {
     });
 }
 
-//shows a larger version of the pokedex art when the picture is clicked
-$("#pokeSprite").on("click", function() {
-  $('#pokedexImgModal').modal('show');
-});
 
 //shows a larger version of the selected card art when the card picture is clicked
 
@@ -221,6 +219,14 @@ function handleLargeCardModal() {
   $('#cardImgModal').modal('show');
 };
 
+//shows a larger version of the pokedex art when the picture is clicked
+$("#pokemonCardPic").on("click", function handlePokeArtModal() {
+  var largePokeArtHolder = $("#pokeSpriteLrg");
+  var largePokeArt = localStorage.getItem("largePokeArt")
+  largeCardArtHolder.attr("src", largeCardArt);
+  console.log(localStorage.getItem("largeCardArt"));
+  $('#pokedexImgModal').modal('show');
+});
 
 // makes search button tie into JS functions when clicked
 $("#searchBtn").on("click", handleSearchClick);
