@@ -140,6 +140,7 @@ function cardFetch() {
   var setSelectURL = " set.id:" + setSelect;
   var formattedURL = cardUrlQuery + searchInput + setSelectURL;
 
+  console.log()
   // Setup X-API-Key and fetch
   $.ajaxSetup({
     beforeSend: function (xhr) {
@@ -151,6 +152,7 @@ function cardFetch() {
   }).then(function (response) {
     console.log(response);
     
+    localStorage.setItem('largeCardArt', response.data[y].images.large);
     console.log(response.data[y].images.small);
 
     // Populate Pokemon Card Info Box 
@@ -173,6 +175,8 @@ function cardFetch() {
       )
       .append("<p>Rarity: " + response.data[y].rarity);
       console.log("Made it to line 185");
+      
+      $("#pokemonCardPic").on("click", handleLargeCardModal)
 
       cardSearchResultsEl.empty();
       for (let i = 0; i < response.data.length; i++) {
@@ -194,6 +198,7 @@ function cardFetch() {
         cardFetch();
       })
     })
+    
     .catch(function(){
       cardInfoEl.empty();
       cardSearchResultsEl.empty();
@@ -207,9 +212,14 @@ $("#pokeSprite").on("click", function() {
 });
 
 //shows a larger version of the selected card art when the card picture is clicked
-$("#pokemonCardPic").on("click", function() {
+
+function handleLargeCardModal() {
+  var largeCardArtHolder = $("#pokemonCardPicLrg");
+  var largeCardArt = localStorage.getItem("largeCardArt")
+  largeCardArtHolder.attr("src", largeCardArt);
+  console.log(localStorage.getItem("largeCardArt"));
   $('#cardImgModal').modal('show');
-});
+};
 
 
 // makes search button tie into JS functions when clicked
