@@ -50,6 +50,8 @@
   background-color: #363b81;
   color: white;
   width: auto;
+  padding-top: 15px;
+  padding-bottom: 5px;
 }
 
 #pokemonCardInfoBox img{
@@ -63,6 +65,16 @@
 
 #pokemonCardInfoBox a {
   color: white;
+  text-align: center;
+  width: auto;
+  border-radius: 10px;
+}
+
+#pokemonCardInfoBox a:hover{
+  text-decoration: none;
+  font-weight: bolder;
+  background-color: #5db9ff;
+  color: #ff1f1f;
 }
 
 
