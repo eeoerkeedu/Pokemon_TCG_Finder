@@ -68,7 +68,11 @@ function handleSearchClick(event) {
 
   //fetch for data fields and sprite pic
   var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + userInput + "/";
-  
+  pokeID.textContent = "";
+  pokeType.textContent = "";
+  pokeWeight.textContent = "";
+  pokeHeight.textContent = "";
+
   fetch(requestUrl)
   .then(function (response) {
       return response.json();

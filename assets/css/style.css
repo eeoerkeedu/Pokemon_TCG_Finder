@@ -40,6 +40,9 @@
   background-color: rgb(68, 68, 68)
 }
 
+#rotatePokedexHeader {
+  display: none;
+}
 
 #pokeSprite:hover{
   cursor: zoom-in;
@@ -716,7 +719,7 @@
   div#bg_curve1_right {
     width: 350px;
     height: 80px;
-    background-color: rgb(68, 68, 68);
+    background-color:#fff;
 
     border-top-right-radius: 30px;
     -webkit-border-top-right-radius: 30px;
@@ -965,6 +968,11 @@
 }
 
 @media handheld and (orientation: portrait), (max-width: 768px) {
+  #rotatePokedexHeader {
+    display: block;
+  }
+  
+  
   div#pokeDex {
     width: 400px;
   }
