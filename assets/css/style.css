@@ -3,6 +3,20 @@
   padding: 0;
 }
 
+.modal-header,
+.modal-footer {
+  color: #fbd743;
+  background-color:  #363b81;
+}
+
+.btn-secondary,
+.btn-close,
+.modal-body {
+  color: #fbd743;
+  background-color: rgb(68, 68, 68)
+}
+
+
 #pokeSprite:hover{
   cursor: zoom-in;
 }
@@ -310,7 +324,7 @@
 
   div#picture {
     height: 175px;
-    width: 254px;
+    width: 230px;
     margin-top: 20px;
     margin-bottom: 9px;
     background-color: #fff;
@@ -678,7 +692,7 @@
   div#bg_curve1_right {
     width: 350px;
     height: 80px;
-    background-color: #fff;
+    background-color: rgb(68, 68, 68);
 
     border-top-right-radius: 30px;
     -webkit-border-top-right-radius: 30px;
