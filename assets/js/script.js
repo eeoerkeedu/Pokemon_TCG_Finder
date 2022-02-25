@@ -96,6 +96,10 @@ function handleSearchClick(event) {
         "Uh oh, it looks like we don't have that particular Pokemon. Did you spell everything correctly?";
       document.getElementById("pokeSprite").src =
         "https://c.tenor.com/lmA7VALYIAsAAAAC/sad-pikachu.gif";
+      pokeID.style.display = "none";
+      pokeType.style.display = "none";
+      pokeWeight.style.display = "none";
+      pokeHeight.style.display = "none";
     });
   // runs actual search function ***
   hideReveal();
