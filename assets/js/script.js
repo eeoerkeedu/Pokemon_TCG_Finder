@@ -5,8 +5,7 @@ var pokeID = document.getElementById("pokeID");
 var pokeType = document.getElementById("pokeType");
 var pokeWeight = document.getElementById("pokeWeight");
 var pokeHeight = document.getElementById("pokeHeight");
-var setAlertModal = document.getElementById('setAlert')
-
+var setAlertModal = document.getElementById("setAlert");
 
 //user input array pulled from local storage
 var searchHistory = [];
@@ -21,8 +20,8 @@ var y = 0;
 //     return response.json();
 //   })
 //   .then(function (data) {
-  //     console.log(data);
-  //     // ADDED FOR DATA PULL
+//     console.log(data);
+//     // ADDED FOR DATA PULL
 //     pokeName.textContent = "Name: " + data.name.toUpperCase();
 //     pokeID.textContent = "ID: " + data.id;
 //     pokeType.textContent = "Type: " + data.types[0].type.name.toUpperCase();
@@ -52,17 +51,17 @@ function handleSearchClick(event) {
 
   if (setSelect === null) {
     // alert("Please select a Set first, please change me!!!!!!!!!!!!!!!!");
-    $('#setAlert').modal('show');
+    $("#setAlert").modal("show");
     return;
   }
 
   var searchFieldInput = $("#pokemonInput");
   var userInput = $(searchFieldInput).val();
   userInput = userInput.toLowerCase();
-  
+
   // Austin - Added Function Call for Card Fetch
-  localStorage.setItem('searchString', userInput);
-  localStorage.setItem('setString', setSelect);
+  localStorage.setItem("searchString", userInput);
+  localStorage.setItem("setString", setSelect);
   cardFetch();
   // End Austin Adds
 
@@ -74,7 +73,7 @@ function handleSearchClick(event) {
   pokeHeight.textContent = "";
 
   fetch(requestUrl)
-  .then(function (response) {
+    .then(function (response) {
       return response.json();
     })
     .then(function (data) {
@@ -86,17 +85,19 @@ function handleSearchClick(event) {
       pokeWeight.textContent = "Weight: " + data.weight / 10 + " Kg";
       pokeHeight.textContent = "Height: " + data.height / 10 + " Meters";
       document.getElementById("pokeSprite").src =
-      data.sprites.other.home.front_default;
-      localStorage.setItem("largePokeArt", data.sprites.other.home.front_default);
-      
+        data.sprites.other.home.front_default;
+      localStorage.setItem(
+        "largePokeArt",
+        data.sprites.other.home.front_default
+      );
     })
     .catch(function () {
       pokeName.textContent =
-      "Uh oh, it looks like we don't have that particular Pokemon. Did you spell everything correctly?";
+        "Uh oh, it looks like we don't have that particular Pokemon. Did you spell everything correctly?";
       document.getElementById("pokeSprite").src =
-      "https://images.unsplash.com/photo-1525785967371-87ba44b3e6cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80";
+        "https://c.tenor.com/lmA7VALYIAsAAAAC/sad-pikachu.gif";
     });
-    // runs actual search function ***
+  // runs actual search function ***
   hideReveal();
   handleHistoryStore();
   handleAutocompleteDisplay();
@@ -109,7 +110,7 @@ function handleHistoryStore() {
   if (searchHistory.length > 10) {
     searchHistory.pop();
   }
-  
+
   localStorage.setItem("pokeHistory", JSON.stringify(searchHistory));
 }
 
@@ -147,7 +148,7 @@ function cardFetch() {
   var setSelectURL = " set.id:" + setSelect;
   var formattedURL = cardUrlQuery + searchInput + setSelectURL;
 
-  console.log()
+  console.log();
   // Setup X-API-Key and fetch
   $.ajaxSetup({
     beforeSend: function (xhr) {
@@ -156,98 +157,108 @@ function cardFetch() {
   });
   $.get({
     url: formattedURL,
-  }).then(function (response) {
-    console.log(response);
-    
-    localStorage.setItem('largeCardArt', response.data[y].images.large);
-    console.log(response.data[y].images.small);
+  })
+    .then(function (response) {
+      console.log(response);
 
-    // Populate Pokemon Card Info Box 
-    cardInfoEl.empty();
-    console.log("Card Fetch Ran")
-    cardInfoEl
-      .append(
-        "<img id='pokemonCardPic' src='" +
-          response.data[y].images.small +
-          "'></img>"
-      )
-      .append("<p>Card: " + response.data[y].name + "</p>")
-      .append("<p>By Artist: " + response.data[y].artist + "</p>")
-      .append(
-        "<p>Set: " +
-          response.data[y].set.series +
-          " - " +
-          response.data[y].set.name +
-          "</p>"
-      )
-      .append("<p>Rarity: " + response.data[y].rarity);
+      localStorage.setItem("largeCardArt", response.data[y].images.large);
+      console.log(response.data[y].images.small);
 
+      // Populate Pokemon Card Info Box
+      cardInfoEl.empty();
+      console.log("Card Fetch Ran");
+      cardInfoEl
+        .append(
+          "<img id='pokemonCardPic' src='" +
+            response.data[y].images.small +
+            "'></img>"
+        )
+        .append("<p>Card: " + response.data[y].name + "</p>")
+        .append("<p>By Artist: " + response.data[y].artist + "</p>")
+        .append(
+          "<p>Set: " +
+            response.data[y].set.series +
+            " - " +
+            response.data[y].set.name +
+            "</p>"
+        )
+        .append("<p>Rarity: " + response.data[y].rarity);
 
-      if (response.data[y].cardmarket != undefined && response.data[y].cardmarket != null){
-        cardInfoEl.append("<p>Average Price: $" +
-        response.data[y].cardmarket.prices.averageSellPrice +
-        "</p>")
-        .append("<a href='" +
-        response.data[y].cardmarket.url +
-        "' target ='_blank'> Market for " +
-        response.data[y].name +
-        "</a>")
+      if (
+        response.data[y].cardmarket != undefined &&
+        response.data[y].cardmarket != null
+      ) {
+        cardInfoEl
+          .append(
+            "<p>Average Price: $" +
+              response.data[y].cardmarket.prices.averageSellPrice +
+              "</p>"
+          )
+          .append(
+            "<a href='" +
+              response.data[y].cardmarket.url +
+              "' target ='_blank'> Market for " +
+              response.data[y].name +
+              "</a>"
+          );
       }
 
-
       console.log("Made it to line 185");
-      
-      $("#pokemonCardPic").on("click", handleLargeCardModal)
+
+      $("#pokemonCardPic").on("click", handleLargeCardModal);
 
       cardSearchResultsEl.empty();
       cardSearchResultsEl.append("<h4>Card Variants</h4>");
       cardSearchResultsEl.children("h4").css("text-align", "center");
-      
+
       for (let i = 0; i < response.data.length; i++) {
-        cardSearchResultsEl.append("<button class = 'cardOption' value='" + 
-        i + 
-        "' type = 'button'>" + 
-        response.data[i].name +
-        " ID: " +
-        response.data[i].id +
-        " " +
-        response.data[i].rarity +
-        "</button>")
+        cardSearchResultsEl.append(
+          "<button class = 'cardOption' value='" +
+            i +
+            "' type = 'button'>" +
+            response.data[i].name +
+            " ID: " +
+            response.data[i].id +
+            " " +
+            response.data[i].rarity +
+            "</button>"
+        );
       }
 
-      cardSearchResultsEl.on('click', '.cardOption', function(event){
+      cardSearchResultsEl.on("click", ".cardOption", function (event) {
         event.preventDefault();
         let targetButton = $(event.target);
         y = targetButton.val();
         cardFetch();
-      })
+      });
     })
-    
-    .catch(function(){
+
+    .catch(function () {
       cardInfoEl.empty();
       cardSearchResultsEl.empty();
-      cardInfoEl.append("<h3>Oops! We couldn't find any cards matching that search! Double check that you spelled the card correctly, and that it's from the set you selected</h3>")
+      cardInfoEl.append(
+        "<h3>Oops! We couldn't find any cards matching that search! Double check that you spelled the card correctly, and that it's from the set you selected</h3>"
+      );
     });
 }
-
 
 //shows a larger version of the selected card art when the card picture is clicked
 
 function handleLargeCardModal() {
   var largeCardArtHolder = $("#pokemonCardPicLrg");
-  var largeCardArt = localStorage.getItem("largeCardArt")
+  var largeCardArt = localStorage.getItem("largeCardArt");
   largeCardArtHolder.attr("src", largeCardArt);
   console.log(localStorage.getItem("largeCardArt"));
-  $('#cardImgModal').modal('show');
-};
+  $("#cardImgModal").modal("show");
+}
 
 //shows a larger version of the pokedex art when the picture is clicked
 $("#pokeSprite").on("click", function handlePokeArtModal() {
   var largePokeArtHolder = $("#pokeSpriteLrg");
-  var largePokeArt = localStorage.getItem("largePokeArt")
+  var largePokeArt = localStorage.getItem("largePokeArt");
   largePokeArtHolder.attr("src", largePokeArt);
   console.log(localStorage.getItem("largeCardArt"));
-  $('#pokedexImgModal').modal('show');
+  $("#pokedexImgModal").modal("show");
 });
 
 // makes search button tie into JS functions when clicked
