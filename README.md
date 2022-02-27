@@ -34,10 +34,10 @@ No worries! Here are some specific searches to try which will showcase different
 ## Screen Shots
 
 ![img](./assets/img/pageInti.png)
-/--------------------------------------------------------
-![img](./assets/img)
-/--------------------------------------------------------
-![img](./assets/img)
+--------------------------------------------------------
+![img](./assets/img/pagesearch.png)
+--------------------------------------------------------
+![img](./assets/img/mobilemode.png)
 
 
 
