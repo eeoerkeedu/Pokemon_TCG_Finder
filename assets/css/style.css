@@ -57,6 +57,8 @@
 #pokemonCardInfoBox img{
   width: 300px;
   height: 400px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #pokemonCardInfoBox p {

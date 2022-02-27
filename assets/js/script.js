@@ -161,6 +161,7 @@ function cardFetch() {
     // Populate Pokemon Card Info Box 
     cardInfoEl.empty();
     console.log("Card Fetch Ran")
+    cardInfoEl.css("width", "auto");
     cardInfoEl
       .append(
         "<img id='pokemonCardPic' src='" +
@@ -222,6 +223,7 @@ function cardFetch() {
     .catch(function(){
       cardInfoEl.empty();
       cardSearchResultsEl.empty();
+      cardInfoEl.css("width", "50vw");
       cardInfoEl.append("<h3>Oops! We couldn't find any cards matching that search! Double check that you spelled the card correctly, and that it's from the set you selected</h3>")
     });
 }
