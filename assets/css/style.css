@@ -26,7 +26,6 @@ h2 {
 .cardOption:hover {
   color: white;
   background-color: #5db9ff;
-  cursor: url(/assets/img/Poké_Ball_icon.svg.png);
 }
 
 .cardOption:focus {
