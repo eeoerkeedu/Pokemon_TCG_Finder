@@ -1,5 +1,4 @@
-// var nameExample = "clefairy";
-//NEW VARS
+// Initial VAR declarations
 var pokeName = document.getElementById("pokeName");
 var pokeID = document.getElementById("pokeID");
 var pokeType = document.getElementById("pokeType");
@@ -12,24 +11,6 @@ var searchHistory = [];
 
 // Index variable for cardFetch function
 var y = 0;
-
-// var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + nameExample + "/";
-
-// fetch(requestUrl)
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-//     // ADDED FOR DATA PULL
-//     pokeName.textContent = "Name: " + data.name.toUpperCase();
-//     pokeID.textContent = "ID: " + data.id;
-//     pokeType.textContent = "Type: " + data.types[0].type.name.toUpperCase();
-//     pokeWeight.textContent = "Weight: " + data.weight / 10 + " Kg";
-//     pokeHeight.textContent = "Height: " + data.height / 10 + " Meters";
-//     document.getElementById("pokeSprite").src =
-//       data.sprites.other.home.front_default;
-//   });
 
 // Hidden jumbotron test code
 
@@ -61,17 +42,20 @@ function handleSearchClick(event) {
   userInput = userInput.toLowerCase();
 
   // Austin - Added Function Call for Card Fetch
+  // Sends two variables to local storage for use in later functions
   localStorage.setItem("searchString", userInput);
   localStorage.setItem("setString", setSelect);
   cardFetch();
-  // End Austin Adds
 
-  //fetch for data fields and sprite pic
+  //pokeAPI url and base attribute values
+
   var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + userInput + "/";
   pokeID.textContent = "";
   pokeType.textContent = "";
   pokeWeight.textContent = "";
   pokeHeight.textContent = "";
+
+  //fetch for pokemon abilities and sprite picture
 
   fetch(requestUrl)
     .then(function (response) {
@@ -79,7 +63,7 @@ function handleSearchClick(event) {
     })
     .then(function (data) {
       console.log(data);
-      // ADDED FOR DATA PULL
+      // Data pulled from pokeAPI to appear in the pokedex
       pokeName.textContent = "Name: " + data.name.toUpperCase();
       pokeID.textContent = "ID: " + data.id;
       pokeType.textContent = "Type: " + data.types[0].type.name.toUpperCase();
@@ -91,16 +75,19 @@ function handleSearchClick(event) {
         "largePokeArt",
         data.sprites.other.home.front_default
       );
+      //displays the attributes if a succesful search comes after a bad search
       pokeID.style.display = "block";
       pokeType.style.display = "block";
       pokeWeight.style.display = "block";
       pokeHeight.style.display = "block";
     })
+    //catch for bad spelling, bad search, etc...
     .catch(function () {
       pokeName.textContent =
         "Uh oh, it looks like we don't have that particular Pokemon. Did you spell everything correctly?";
       document.getElementById("pokeSprite").src =
         "https://c.tenor.com/lmA7VALYIAsAAAAC/sad-pikachu.gif";
+      //hide the list items on a bad search
       pokeID.style.display = "none";
       pokeType.style.display = "none";
       pokeWeight.style.display = "none";
@@ -148,7 +135,12 @@ function init() {
   handleAutocompleteDisplay();
 }
 
+// The function "cardFetch" and all of its nested items handles everything to do with returning
+// data from the Pokemon TCG API
+
 function cardFetch() {
+
+  // First, define some local variables
   var cardInfoEl = $("#pokemonCardInfoBox");
   var cardSearchResultsEl = $("#cardSearchResults");
   var cardUrlQuery = "https://api.pokemontcg.io/v2/cards?q=";
@@ -157,7 +149,6 @@ function cardFetch() {
   var setSelectURL = " set.id:" + setSelect;
   var formattedURL = cardUrlQuery + searchInput + setSelectURL;
 
-  console.log();
   // Setup X-API-Key and fetch
   $.ajaxSetup({
     beforeSend: function (xhr) {
@@ -165,19 +156,30 @@ function cardFetch() {
     },
   });
   $.get({
-    url: formattedURL,
+
+    // The "formatted URL" is defined above in my local variables, and includes everything needed
+    // to do a valid card search
+    url: formattedURL, 
 
   })
     .then(function (response) {
       console.log(response);
-
+      
+      // Checks to ensure y is a valid number for the size of the response array
+      if (y > response.data.length){
+        y = 0;
+      }
+      
+      // send the url for the larger card image to local storage for use in a modal later
       localStorage.setItem("largeCardArt", response.data[y].images.large);
-      console.log(response.data[y].images.small);
 
-      // Populate Pokemon Card Info Box
+      // First, empty the card info DIV, in case this is a repeat search
       cardInfoEl.empty();
-      console.log("Card Fetch Ran");
+      // Next, make sure the CSS styling on that div is "Auto", in case it was changed by a Catch response (below)
       cardInfoEl.css("width", "auto");
+      // Now, append a series of images, paragraphs, and links from the response object.
+      // Uses the variable "y", which is set to 0 by default
+
       cardInfoEl
         .append(
           "<img id='pokemonCardPic' src='" +
@@ -195,6 +197,8 @@ function cardFetch() {
         )
         .append("<p>Rarity: " + response.data[y].rarity);
 
+
+      // If card market data is available, provide it.
 
       if (
         response.data[y].cardmarket != undefined &&
@@ -215,14 +219,15 @@ function cardFetch() {
           );
       }
 
-      console.log("Made it to line 185");
-
+      // Handle the click event on the card art
       $("#pokemonCardPic").on("click", handleLargeCardModal);
 
+      // Empty the div with card variants, then add a header
       cardSearchResultsEl.empty();
       cardSearchResultsEl.append("<h4>Card Variants</h4>");
       cardSearchResultsEl.children("h4").css("text-align", "center");
 
+      // Run a loop for all available items in the response object, and set up buttons for those array items
       for (let i = 0; i < response.data.length; i++) {
         cardSearchResultsEl.append(
           "<button class = 'cardOption' value='" +
@@ -236,7 +241,8 @@ function cardFetch() {
             "</button>"
         );
       }
-
+      // Use event delegation to set up the click events on those buttons. Runs cardFetch again with the
+      // new values to toggle between cards.
       cardSearchResultsEl.on("click", ".cardOption", function (event) {
         event.preventDefault();
         let targetButton = $(event.target);
@@ -244,14 +250,16 @@ function cardFetch() {
         cardFetch();
       });
     })
-
+    // Simple catch function - empties the divs, and sends an error message as an H3 into the primary
+    // Info Div
     .catch(function () {
       cardInfoEl.empty();
       cardSearchResultsEl.empty();
 
       cardInfoEl.css("width", "50vw");
-      cardInfoEl.append("<h3>Oops! We couldn't find any cards matching that search! Double check that you spelled the card correctly, and that it's from the set you selected</h3>")
-
+      cardInfoEl.append(
+        "<h3>Oops! We couldn't find any cards matching that search! Double check that you spelled the card correctly, and that it's from the set you selected</h3>"
+      );
     });
 }
 
