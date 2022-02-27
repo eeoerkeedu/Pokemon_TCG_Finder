@@ -61,10 +61,10 @@ function handleSearchClick(event) {
   userInput = userInput.toLowerCase();
 
   // Austin - Added Function Call for Card Fetch
+  // Sends two variables to local storage for use in later functions
   localStorage.setItem("searchString", userInput);
   localStorage.setItem("setString", setSelect);
   cardFetch();
-  // End Austin Adds
 
   //fetch for data fields and sprite pic
   var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + userInput + "/";
@@ -148,7 +148,12 @@ function init() {
   handleAutocompleteDisplay();
 }
 
+// The function "cardFetch" and all of its nested items handles everything to do with returning
+// data from the Pokemon TCG API
+
 function cardFetch() {
+
+  // First, define some local variables
   var cardInfoEl = $("#pokemonCardInfoBox");
   var cardSearchResultsEl = $("#cardSearchResults");
   var cardUrlQuery = "https://api.pokemontcg.io/v2/cards?q=";
@@ -157,7 +162,6 @@ function cardFetch() {
   var setSelectURL = " set.id:" + setSelect;
   var formattedURL = cardUrlQuery + searchInput + setSelectURL;
 
-  console.log();
   // Setup X-API-Key and fetch
   $.ajaxSetup({
     beforeSend: function (xhr) {
@@ -165,19 +169,28 @@ function cardFetch() {
     },
   });
   $.get({
-    url: formattedURL,
-
+    // The "formatted URL" is defined above in my local variables, and includes everything needed
+    // to do a valid card search
+    url: formattedURL, 
   })
     .then(function (response) {
       console.log(response);
-
+      
+      // Checks to ensure y is a valid number for the size of the response array
+      if (y > response.data.length){
+        y = 0;
+      }
+      
+      // send the url for the larger card image to local storage for use in a modal later
       localStorage.setItem("largeCardArt", response.data[y].images.large);
-      console.log(response.data[y].images.small);
 
-      // Populate Pokemon Card Info Box
+      // First, empty the card info DIV, in case this is a repeat search
       cardInfoEl.empty();
-      console.log("Card Fetch Ran");
+      // Next, make sure the CSS styling on that div is "Auto", in case it was changed by a Catch response (below)
       cardInfoEl.css("width", "auto");
+      // Now, append a series of images, paragraphs, and links from the response object.
+      // Uses the variable "y", which is set to 0 by default
+
       cardInfoEl
         .append(
           "<img id='pokemonCardPic' src='" +
@@ -195,7 +208,7 @@ function cardFetch() {
         )
         .append("<p>Rarity: " + response.data[y].rarity);
 
-
+      // If card market data is available, provide it.
       if (
         response.data[y].cardmarket != undefined &&
         response.data[y].cardmarket != null
@@ -215,14 +228,15 @@ function cardFetch() {
           );
       }
 
-      console.log("Made it to line 185");
-
+      // Handle the click event on the card art
       $("#pokemonCardPic").on("click", handleLargeCardModal);
 
+      // Empty the div with card variants, then add a header
       cardSearchResultsEl.empty();
       cardSearchResultsEl.append("<h4>Card Variants</h4>");
       cardSearchResultsEl.children("h4").css("text-align", "center");
 
+      // Run a loop for all available items in the response object, and set up buttons for those array items
       for (let i = 0; i < response.data.length; i++) {
         cardSearchResultsEl.append(
           "<button class = 'cardOption' value='" +
@@ -236,7 +250,8 @@ function cardFetch() {
             "</button>"
         );
       }
-
+      // Use event delegation to set up the click events on those buttons. Runs cardFetch again with the
+      // new values to toggle between cards.
       cardSearchResultsEl.on("click", ".cardOption", function (event) {
         event.preventDefault();
         let targetButton = $(event.target);
@@ -244,7 +259,8 @@ function cardFetch() {
         cardFetch();
       });
     })
-
+    // Simple catch function - empties the divs, and sends an error message as an H3 into the primary
+    // Info Div
     .catch(function () {
       cardInfoEl.empty();
       cardSearchResultsEl.empty();
