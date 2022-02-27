@@ -90,6 +90,10 @@ function handleSearchClick(event) {
         "largePokeArt",
         data.sprites.other.home.front_default
       );
+      pokeID.style.display = "block";
+      pokeType.style.display = "block";
+      pokeWeight.style.display = "block";
+      pokeHeight.style.display = "block";
     })
     .catch(function () {
       pokeName.textContent =
