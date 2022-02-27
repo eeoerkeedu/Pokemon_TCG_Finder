@@ -136,7 +136,7 @@ h2 {
   background-color: #5db9ff;
 }
 
-
+/* All CSS below this line is related to the pokedex formatting and display originally by Bidji on CodePen, found here: https://codepen.io/Bidji/pen/MYdPwo */
 @media all {
   div#pokeDex {
     width: 750px;
