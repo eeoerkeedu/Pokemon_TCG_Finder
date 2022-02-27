@@ -22,6 +22,14 @@ Other sites may give you details on individual pokemon or on their cards but few
     availability of purchasing that card individually from: 
     https://www.cardmarket.com/en/Pokemon
 
+## Demo Usage:
+Not familiar with Pokemon or the Pokemon Trading Card game (or both)?
+No worries! Here are some specific searches to try which will showcase different responses:
+
+- Set Dropdown: "Battle Styles" & Input: "Tyranitar" for a typical search
+- Set Dropdown: "Chilling Reign" & Input: "Calyrex" for a search with many results (we used a wildcard search)
+- Set Dropdown: "Battle Style" & Input: "Geodude" for a search with a 200 response from API1 and a 400 response from API2
+- Set Dropdown: "Battle Styles" & Input "Mustard" for a search with a 400 response from API1 and a 200 response from API2
 
 ## Screen Shots
 
@@ -30,6 +38,9 @@ Other sites may give you details on individual pokemon or on their cards but few
 ![img](./assets/img)
 /--------------------------------------------------------
 ![img](./assets/img)
+
+
+
 
 ## Credits
 
