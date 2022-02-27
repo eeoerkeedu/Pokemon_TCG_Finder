@@ -40,6 +40,33 @@
   background-color: rgb(68, 68, 68)
 }
 
+@media screen and (max-width: 770px) {
+
+  #resultsDisplay {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  }
+
+  #pokemonCardInfoBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #pokemonCardInfoBox h3{
+    text-align: center;
+  }
+
+  .col-2 {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    }
+}
+
 #rotatePokedexHeader {
   display: none;
 }
@@ -60,6 +87,8 @@
 #pokemonCardInfoBox img{
   width: 300px;
   height: 400px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #pokemonCardInfoBox p {

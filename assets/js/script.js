@@ -165,6 +165,7 @@ function cardFetch() {
   });
   $.get({
     url: formattedURL,
+
   })
     .then(function (response) {
       console.log(response);
@@ -191,6 +192,7 @@ function cardFetch() {
             "</p>"
         )
         .append("<p>Rarity: " + response.data[y].rarity);
+
 
       if (
         response.data[y].cardmarket != undefined &&
@@ -244,9 +246,10 @@ function cardFetch() {
     .catch(function () {
       cardInfoEl.empty();
       cardSearchResultsEl.empty();
-      cardInfoEl.append(
-        "<h3>Oops! We couldn't find any cards matching that search! Double check that you spelled the card correctly, and that it's from the set you selected</h3>"
-      );
+
+      cardInfoEl.css("width", "50vw");
+      cardInfoEl.append("<h3>Oops! We couldn't find any cards matching that search! Double check that you spelled the card correctly, and that it's from the set you selected</h3>")
+
     });
 }
 
