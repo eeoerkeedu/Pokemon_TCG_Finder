@@ -40,6 +40,7 @@ function hideReveal() {
   $("#searchResults").removeClass("d-none");
   $("#pokeDex").removeClass("d-none");
   $("#resultsDisplay").removeClass("d-none");
+  $("#rotatePokedexHeader").removeClass("d-none");
 }
 
 //runs functions of the search button when it's clicked

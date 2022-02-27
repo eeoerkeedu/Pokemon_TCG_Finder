@@ -3,6 +3,15 @@
   padding: 0;
 }
 
+h1,
+h2,
+h4 {
+  font-family: 'Press Start 2P', cursive;
+}
+
+h2 {
+  text-align: center;
+}
 
 .cardOption {
   margin: 3px;
@@ -31,6 +40,7 @@
 .modal-footer {
   color: #fbd743;
   background-color:  #363b81;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .btn-secondary,
@@ -809,7 +819,7 @@
     background-color: #30da0c;
     z-index: 1;
     font-size: 13px;
-    font-family: arial, sans-serif;
+    font-family: 'Press Start 2P', cursive;
 
     position: absolute;
     top: 130px;
