@@ -141,7 +141,8 @@ h2 {
   background-color: #5db9ff;
 }
 
-/* the following css is all for the pokedex the shows pending a search */
+
+/* All CSS below this line is related to the pokedex formatting and display originally by Bidji on CodePen, found here: https://codepen.io/Bidji/pen/MYdPwo */
 @media all {
   div#pokeDex {
     width: 750px;
