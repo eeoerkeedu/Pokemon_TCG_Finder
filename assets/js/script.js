@@ -176,6 +176,7 @@ function cardFetch() {
       // Populate Pokemon Card Info Box
       cardInfoEl.empty();
       console.log("Card Fetch Ran");
+      cardInfoEl.css("width", "auto");
       cardInfoEl
         .append(
           "<img id='pokemonCardPic' src='" +
