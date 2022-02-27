@@ -1,5 +1,4 @@
-// var nameExample = "clefairy";
-//NEW VARS
+// Initial VAR declarations
 var pokeName = document.getElementById("pokeName");
 var pokeID = document.getElementById("pokeID");
 var pokeType = document.getElementById("pokeType");
@@ -12,24 +11,6 @@ var searchHistory = [];
 
 // Index variable for cardFetch function
 var y = 0;
-
-// var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + nameExample + "/";
-
-// fetch(requestUrl)
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-//     // ADDED FOR DATA PULL
-//     pokeName.textContent = "Name: " + data.name.toUpperCase();
-//     pokeID.textContent = "ID: " + data.id;
-//     pokeType.textContent = "Type: " + data.types[0].type.name.toUpperCase();
-//     pokeWeight.textContent = "Weight: " + data.weight / 10 + " Kg";
-//     pokeHeight.textContent = "Height: " + data.height / 10 + " Meters";
-//     document.getElementById("pokeSprite").src =
-//       data.sprites.other.home.front_default;
-//   });
 
 // Hidden jumbotron test code
 
@@ -66,12 +47,15 @@ function handleSearchClick(event) {
   cardFetch();
   // End Austin Adds
 
-  //fetch for data fields and sprite pic
+  //pokeAPI url and base attribute values
+
   var requestUrl = "https://pokeapi.co/api/v2/pokemon/" + userInput + "/";
   pokeID.textContent = "";
   pokeType.textContent = "";
   pokeWeight.textContent = "";
   pokeHeight.textContent = "";
+
+  //fetch for pokemon abilities and sprite picture
 
   fetch(requestUrl)
     .then(function (response) {
@@ -79,7 +63,7 @@ function handleSearchClick(event) {
     })
     .then(function (data) {
       console.log(data);
-      // ADDED FOR DATA PULL
+      // Data pulled from pokeAPI to appear in the pokedex
       pokeName.textContent = "Name: " + data.name.toUpperCase();
       pokeID.textContent = "ID: " + data.id;
       pokeType.textContent = "Type: " + data.types[0].type.name.toUpperCase();
@@ -91,16 +75,19 @@ function handleSearchClick(event) {
         "largePokeArt",
         data.sprites.other.home.front_default
       );
+      //displays the attributes if a succesful search comes after a bad search
       pokeID.style.display = "block";
       pokeType.style.display = "block";
       pokeWeight.style.display = "block";
       pokeHeight.style.display = "block";
     })
+    //catch for bad spelling, bad search, etc...
     .catch(function () {
       pokeName.textContent =
         "Uh oh, it looks like we don't have that particular Pokemon. Did you spell everything correctly?";
       document.getElementById("pokeSprite").src =
         "https://c.tenor.com/lmA7VALYIAsAAAAC/sad-pikachu.gif";
+      //hide the list items on a bad search
       pokeID.style.display = "none";
       pokeType.style.display = "none";
       pokeWeight.style.display = "none";
@@ -166,7 +153,6 @@ function cardFetch() {
   });
   $.get({
     url: formattedURL,
-
   })
     .then(function (response) {
       console.log(response);
@@ -194,7 +180,6 @@ function cardFetch() {
             "</p>"
         )
         .append("<p>Rarity: " + response.data[y].rarity);
-
 
       if (
         response.data[y].cardmarket != undefined &&
@@ -250,8 +235,9 @@ function cardFetch() {
       cardSearchResultsEl.empty();
 
       cardInfoEl.css("width", "50vw");
-      cardInfoEl.append("<h3>Oops! We couldn't find any cards matching that search! Double check that you spelled the card correctly, and that it's from the set you selected</h3>")
-
+      cardInfoEl.append(
+        "<h3>Oops! We couldn't find any cards matching that search! Double check that you spelled the card correctly, and that it's from the set you selected</h3>"
+      );
     });
 }
 
