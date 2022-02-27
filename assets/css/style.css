@@ -13,6 +13,8 @@ h2 {
   text-align: center;
 }
 
+ 
+/* when the search results display as a list, the following css styles and adds hover effects on the list that displayes */
 .cardOption {
   margin: 3px;
   background-color: white;
@@ -50,6 +52,7 @@ h2 {
   background-color: rgb(68, 68, 68)
 }
 
+/* css for chaning layout when website is accessed via mobile device */
 @media screen and (max-width: 770px) {
 
   #resultsDisplay {
@@ -77,6 +80,8 @@ h2 {
     }
 }
 
+
+/* The followig css controls how the information about the selected card is displayed following a search result */
 #rotatePokedexHeader {
   display: none;
 }
@@ -136,7 +141,7 @@ h2 {
   background-color: #5db9ff;
 }
 
-
+/* the following css is all for the pokedex the shows pending a search */
 @media all {
   div#pokeDex {
     width: 750px;
